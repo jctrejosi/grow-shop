@@ -1,0 +1,85 @@
+Table "Client" {
+  "id" SERIAL [pk, increment]
+  "username" VARCHAR(255) [unique]
+  "name" VARCHAR(255) [not null]
+  "email" VARCHAR(255)
+  "phone" BIGINT [not null]
+  "address" TEXT [not null]
+  "password" VARCHAR(255)
+}
+
+Table "Store" {
+  "nit" VARCHAR(255) [pk]
+  "name" VARCHAR(255) [unique, not null]
+  "location" VARCHAR(255) [unique, not null]
+  "init_date" TIMESTAMP
+  "end_date" TIMESTAMP
+  "image" VARCHAR
+  "phone" BIGINT [not null]
+  "email" VARCHAR [not null]
+}
+
+Table "Category" {
+  "id" SERIAL [pk, increment]
+  "name" VARCHAR(255) [not null]
+}
+
+Table "Product" {
+  "id" SERIAL [pk, increment]
+  "name" VARCHAR(255) [not null]
+  "description" TEXT [not null]
+  "price" BIGINT [not null]
+  "images" "VARCHAR[]" [not null]
+  "store_nit" VARCHAR(255) [not null]
+
+Indexes {
+  (name, store_nit) [unique]
+}
+}
+
+Table "ProductCategory" {
+  "id" SERIAL [pk, increment]
+  "product_id" SERIAL [increment]
+  "category_id" INT
+}
+
+Table "Purchase" {
+  "id" SERIAL [pk, increment]
+  "client_id" SERIAL [increment]
+  "store_nit" VARCHAR(255) [not null]
+  "products" "VARCHAR(255)[]" [not null]
+  "state" VARCHAR(255) [not null]
+  "location" TEXT [not null]
+  "init_date" TIMESTAMP [not null]
+  "end_date" TIMESTAMP [not null]
+  "balance" BIGINT [not null]
+}
+
+Table "PaymentMethod" {
+  "id" SERIAL [pk, increment]
+  "name" VARCHAR(255) [not null]
+}
+
+Table "Pay" {
+  "id" SERIAL [pk, increment]
+  "purchase_id" SERIAL [not null, increment]
+  "payment_method_id" SERIAL [not null, increment]
+  "reference" VARCHAR(255)
+  "amount" BIGINT [not null]
+  "date" TIMESTAMP [not null]
+  "state" VARCHAR(255) [not null]
+}
+
+Ref:"Store"."nit" < "Product"."store_nit"
+
+Ref:"Product"."id" < "ProductCategory"."product_id"
+
+Ref:"Category"."id" < "ProductCategory"."category_id"
+
+Ref:"Client"."id" < "Purchase"."client_id" [delete: set null]
+
+Ref:"Store"."nit" < "Purchase"."store_nit"
+
+Ref:"Purchase"."id" < "Pay"."purchase_id"
+
+Ref:"PaymentMethod"."id" < "Pay"."payment_method_id"
