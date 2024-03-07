@@ -30,7 +30,7 @@ CREATE TABLE Product (
     images TEXT[] NOT NULL,
     store_nit VARCHAR(255) NOT NULL,
     FOREIGN KEY (store_nit) REFERENCES Store(nit),
-    UNIQUE (name, store_nit) // ---- añadido para evitar repeticiones en los productos en la misma tienda, pero si puedo repetir el producto en otras tiendas
+    UNIQUE (name, store_nit) // ---- Añadido para evitar repeticiones en los productos en la misma tienda, pero si puedo repetir el producto en otras tiendas
 );
 
 CREATE TABLE ProductCategory (
