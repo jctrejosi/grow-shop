@@ -8,7 +8,7 @@ import { exampleReducerSlice } from './slices/example';
 
 export const store = configureStore({
   reducer: {
-    example: exampleReducerSlice.reducer
+    example: exampleReducerSlice.reducer,
   },
 });
 

@@ -1,7 +1,7 @@
 export type ExpampleComponentT = {
-    /**
-    * Texto de ejemplo
-    */
-    textExample: string;
-    handleClick: () => void;
-}
+  /**
+   * Texto de ejemplo
+   */
+  textExample: string;
+  handleClick: () => void;
+};

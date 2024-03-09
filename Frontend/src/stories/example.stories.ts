@@ -13,6 +13,8 @@ type Story = StoryObj<typeof Example>;
 export const Default: Story = {
   args: {
     textExample: 'Texto de ejemplo',
-    handleClick: () => {alert('hello example')}
+    handleClick: () => {
+      alert('hello example');
+    },
   },
 };

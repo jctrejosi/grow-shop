@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // -----------------------------------------------------------------------------
 
 export const AppRouter = () => {
-
   return (
     <BrowserRouter basename="/growShop">
       <Routes>
@@ -14,7 +13,10 @@ export const AppRouter = () => {
             <section className="router-inner-container">
               <header></header>
               <Routes>
-                <Route path="innerExample" element={<div>Página interna de ejemplo</div>} />
+                <Route
+                  path="innerExample"
+                  element={<div>Página interna de ejemplo</div>}
+                />
               </Routes>
               <footer></footer>
             </section>
