@@ -71,3 +71,22 @@ CREATE TABLE Pay (
     FOREIGN KEY (purchase_id) REFERENCES Purchase(id),
     FOREIGN KEY (payment_method_id) REFERENCES PaymentMethod(id)
 );
+
+CREATE TABLE Admin (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone BIGINT NOT NULL,
+    address TEXT NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE StoreAdmin (
+    id SERIAL PRIMARY KEY,
+    store_nit VARCHAR(255) NOT NULL,
+    admin_id INT NOT NULL,
+    FOREIGN KEY (store_nit) REFERENCES Store(nit),
+    FOREIGN KEY (admin_id) REFERENCES Admin(id),
+    UNIQUE (store_nit, admin_id)  -- Asegura que un admin solo puede administrar una tienda
+);
