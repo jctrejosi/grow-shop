@@ -1,11 +1,22 @@
-import './App.css'
+// ---- Routes
 
-function App() {
+import { Provider } from 'react-redux';
+import { AppRouter } from './routes';
 
-  return (
-    <>app
-    </>
-  )
-}
+// ---- Store
 
-export default App
+import { store } from './store';
+
+// ---- Configuration
+
+import { axiosConfiguration } from './configuration/axios';
+
+axiosConfiguration();
+
+const App = () => (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
+
+export default App;
